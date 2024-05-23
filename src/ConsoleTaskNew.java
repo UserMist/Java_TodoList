@@ -39,7 +39,10 @@ public class ConsoleTaskNew extends ConsoleDialogue {
                 answers.put(id, line);
                 break;
             case 2:
-                answers.put(id, Integer.parseInt(line));
+                var priority = Integer.parseInt(line);
+                if(priority < 0 || priority > 10)
+                    throw new Exception("Число лежать в интервале [0; 10]");
+                answers.put(id, priority);
                 break;
             case 3:
                 answers.put(id, null);
