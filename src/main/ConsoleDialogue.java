@@ -4,17 +4,18 @@ import java.util.HashMap;
 
 /**
  * Консольный контроллер, используемый для введения набора данных в виде отдельных полей
+ * Ограничение: getQuestionAmount() > 0
  * @see ConsoleController
  */
 public abstract class ConsoleDialogue extends ConsoleController {
-    public final HashMap<Integer, Object> answers = new HashMap<>(getQuestionAmount());
+    protected final HashMap<Integer, Object> answers = new HashMap<>(getQuestionAmount());
     private int currentId = 0;
 
     public ConsoleDialogue(StringBuilder out) {
         printQuestion(0, out);
     }
 
-    public abstract int getQuestionAmount(); // > 0
+    public abstract int getQuestionAmount();
 
     public abstract void printQuestion(int id, StringBuilder out);
 

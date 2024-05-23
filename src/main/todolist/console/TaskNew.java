@@ -5,8 +5,8 @@ import main.*;
 import java.util.Date;
 
 public class TaskNew extends ConsoleDialogue {
-    public TodoList dataBase;
-    public int taskId;
+    private final TodoList dataBase;
+    private final int taskId;
 
     public TaskNew(StringBuilder out, TodoList dataBase, int taskId) {
         super(out);

@@ -21,6 +21,54 @@ public class TodoTask {
         this.completionDate = null;
     }
 
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getPriority() {
+        return priority;
+    }
+
+    public void setPriority(int priority) {
+        this.priority = priority;
+    }
+
+    public Date getDeadline() {
+        return deadline;
+    }
+
+    public void setDeadline(Date deadline) {
+        this.deadline = deadline;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    public Date getCompletionDate() {
+        return completionDate;
+    }
+
+    public void setCompletionDate(Date completionDate) {
+        this.completionDate = completionDate;
+    }
+
     public enum Status
     {
         Invalid,
@@ -29,11 +77,11 @@ public class TodoTask {
         Done,
     }
 
-    public String title;
-    public String description; //length <= 50
-    public int priority;  //importance ascends on [0;10]
-    public Date deadline;
-    public Status status;
-    public Date completionDate; //null when status != .Done
+    private String title;
+    private String description;
+    private int priority;
+    private Date deadline;
+    private Status status;
+    private Date completionDate;
 }
 

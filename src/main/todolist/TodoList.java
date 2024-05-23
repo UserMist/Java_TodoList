@@ -10,9 +10,26 @@ import java.util.*;
  * @see TodoTask
  */
 public class TodoList {
-    public Path savePath;
-    public RepresentationConverter<TodoList> converter;
     public final HashMap<Integer, TodoTask> tasks = new HashMap<>();
+    protected Path savePath;
+    protected RepresentationConverter<TodoList> converter;
+
+    public Path getSavePath() {
+        return savePath;
+    }
+
+    public void setSavePath(Path savePath) {
+        this.savePath = savePath;
+    }
+
+    public RepresentationConverter<TodoList> getConverter() {
+        return converter;
+    }
+
+    public void setConverter(RepresentationConverter<TodoList> converter) {
+        this.converter = converter;
+    }
+
     public TodoList(Path savePath, RepresentationConverter<TodoList> converter) throws Exception {
         this.savePath = savePath;
         this.converter = converter;
@@ -55,7 +72,7 @@ public class TodoList {
     public ArrayList<HashMap.Entry<Integer, TodoTask>> getTaskView(TodoTask.Status matchStatus) {
         var taskView = new ArrayList<HashMap.Entry<Integer, TodoTask>>();
         tasks.forEach((id,task) -> {
-            if(task.status.equals(matchStatus))
+            if(task.getStatus().equals(matchStatus))
                 taskView.add(new AbstractMap.SimpleEntry<>(id,task));
         });
         return taskView;

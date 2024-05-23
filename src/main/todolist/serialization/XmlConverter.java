@@ -28,20 +28,20 @@ public class XmlConverter implements RepresentationConverter<TodoList> {
         in.tasks.forEach((taskId, task) -> {
             var taskXml = xmlDoc.createElement("Task");
             taskXml.setAttribute("id", taskId.toString());
-            taskXml.setAttribute("title", task.title);
-            taskXml.setAttribute("description", task.description);
+            taskXml.setAttribute("title", task.getTitle());
+            taskXml.setAttribute("description", task.getDescription());
             xmlRoot.appendChild(taskXml);
 
             var priority = xmlDoc.createElement("Priority");
-            priority.setTextContent(String.valueOf(task.priority));
+            priority.setTextContent(String.valueOf(task.getPriority()));
             taskXml.appendChild(priority);
 
             var deadline = xmlDoc.createElement("Deadline");
-            deadline.setTextContent(defaultDateParser.format(task.deadline));
+            deadline.setTextContent(defaultDateParser.format(task.getDeadline()));
             taskXml.appendChild(deadline);
 
             var status = xmlDoc.createElement("Status");
-            switch(task.status) {
+            switch(task.getStatus()) {
                 case Invalid: status.setTextContent("invalid"); break;
                 case New: status.setTextContent("new"); break;
                 case InProgress: status.setTextContent("in_progress"); break;
@@ -49,9 +49,9 @@ public class XmlConverter implements RepresentationConverter<TodoList> {
             }
             taskXml.appendChild(status);
 
-            if(task.status == TodoTask.Status.Done && task.completionDate != null) {
+            if(task.getStatus() == TodoTask.Status.Done && task.getCompletionDate() != null) {
                 var completionDate = xmlDoc.createElement("CompletionDate");
-                completionDate.setTextContent(defaultDateParser.format(task.completionDate));
+                completionDate.setTextContent(defaultDateParser.format(task.getCompletionDate()));
                 taskXml.appendChild(completionDate);
             }
         });
@@ -102,23 +102,23 @@ public class XmlConverter implements RepresentationConverter<TodoList> {
                 var taskFieldXml = taskXmlChildren.item(j);
                 switch(taskFieldXml.getNodeName()) {
                     case "Description":
-                        task.description = taskFieldXml.getTextContent();
+                        task.setDescription(taskFieldXml.getTextContent());
                         break;
                     case "Priority":
-                        task.priority = Integer.parseInt(taskFieldXml.getTextContent());
+                        task.setPriority(Integer.parseInt(taskFieldXml.getTextContent()));
                         break;
                     case "Deadline":
-                        task.deadline = defaultDateParser.parse(taskFieldXml.getTextContent());
+                        task.setDeadline(defaultDateParser.parse(taskFieldXml.getTextContent()));
                         break;
                     case "Status":
                         switch(taskFieldXml.getTextContent()) {
-                            case "new": task.status = TodoTask.Status.New; break;
-                            case "in_progress": task.status = TodoTask.Status.InProgress; break;
-                            case "done": task.status = TodoTask.Status.Done; break;
+                            case "new": task.setStatus(TodoTask.Status.New); break;
+                            case "in_progress": task.setStatus(TodoTask.Status.InProgress); break;
+                            case "done": task.setStatus(TodoTask.Status.Done); break;
                         }
                         break;
                     case "CompletionDate":
-                        task.completionDate = defaultDateParser.parse(taskFieldXml.getTextContent());
+                        task.setCompletionDate(defaultDateParser.parse(taskFieldXml.getTextContent()));
                         break;
                 }
             }

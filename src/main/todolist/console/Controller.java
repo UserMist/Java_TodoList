@@ -121,21 +121,21 @@ public class Controller extends main.ConsoleController {
             return;
         }
 
-        taskView.sort(Comparator.comparingInt(a -> -a.getValue().priority));
+        taskView.sort(Comparator.comparingInt(a -> -a.getValue().getPriority()));
         taskView.forEach(pair -> {
             var id = pair.getKey();
             var task = pair.getValue();
 
-            var statusWord = "важность "+task.priority+", ";
-            switch(task.status) {
+            var statusWord = "важность "+task.getPriority()+", ";
+            switch(task.getStatus()) {
                 case New: statusWord += "новая"; break;
                 case InProgress: statusWord += "текущая"; break;
-                case Done: statusWord += "завершена " + defaultDateParser.format(task.completionDate); break;
+                case Done: statusWord += "завершена " + defaultDateParser.format(task.getCompletionDate()); break;
                 default: statusWord += "invalid"; break;
             }
-            out.append('[').append(id).append("] ").append(task.title).append(" (").append(statusWord).append(")\n");
-            out.append("Описание: ").append(task.description).append('\n');
-            out.append("Крайний срок: ").append(defaultDateParser.format(task.deadline)).append('\n');
+            out.append('[').append(id).append("] ").append(task.getTitle()).append(" (").append(statusWord).append(")\n");
+            out.append("Описание: ").append(task.getDescription()).append('\n');
+            out.append("Крайний срок: ").append(defaultDateParser.format(task.getDeadline())).append('\n');
         });
 
         if(taskView.isEmpty())
@@ -213,14 +213,14 @@ public class Controller extends main.ConsoleController {
             out.append("Задача #").append(id);
             if(dataBase.tasks.containsKey(id)) {
                 var task = dataBase.tasks.get(id);
-                if(task.status == TodoTask.Status.Done) {
+                if(task.getStatus() == TodoTask.Status.Done) {
                     out.append(" уже помечена как выполненная\n");
                 }
                 else {
-                    task.status = TodoTask.Status.Done;
+                    task.setStatus(TodoTask.Status.Done);
                     var calendar = Calendar.getInstance();
                     calendar.setTimeZone(TimeZone.getTimeZone("GMT+3"));
-                    task.completionDate = calendar.getTime();
+                    task.setCompletionDate(calendar.getTime());
                     out.append(" была помечена как выполненная\n");
 
                     try { dataBase.saveChanges(); }
