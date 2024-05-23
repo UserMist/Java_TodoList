@@ -18,7 +18,7 @@ public class Main {
         }
 
         var controller = new Controller(dataBase);
-        while(!controller.dispose) {
+        while(!controller.needsDispose) {
             String cmdLine = "";
             try { cmdLine = consoleReader.readLine(); }
             catch(IOException e) { System.out.println(e.getMessage()); }

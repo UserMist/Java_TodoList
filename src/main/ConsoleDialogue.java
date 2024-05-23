@@ -39,7 +39,7 @@ public abstract class ConsoleDialogue extends ConsoleController {
         }
         else {
             finish(out);
-            dispose = true;
+            needsDispose = true;
         }
     }
 }
