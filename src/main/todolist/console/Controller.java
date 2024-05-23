@@ -242,7 +242,7 @@ public class Controller extends main.ConsoleController {
     public void execute(String line, StringBuilder out) {
         if(redirection != null) {
             redirection.execute(line, out);
-            if(redirection.dispose)
+            if(redirection.needsDispose)
                 redirection = null;
             return;
         }
@@ -258,7 +258,7 @@ public class Controller extends main.ConsoleController {
             case "remove": executeRemove(words, out); break;
             case "edit": executeEdit(words, out); break;
             case "complete": executeComplete(words, out); break;
-            case "exit": dispose = true; break;
+            case "exit": needsDispose = true; break;
             default: out.append("Неизвестная команда\n"); break;
         }
     }
