@@ -11,8 +11,8 @@ import java.util.*;
  */
 public class TodoList {
     public final HashMap<Integer, TodoTask> tasks = new HashMap<>();
-    protected Path savePath;
-    protected RepresentationConverter<TodoList> converter;
+    protected Path savePath; //Уточняет путь сохранения данных
+    protected RepresentationConverter<TodoList> saveConverter; //Уточняет формат сохранения данных
 
     public Path getSavePath() {
         return savePath;
@@ -22,17 +22,22 @@ public class TodoList {
         this.savePath = savePath;
     }
 
-    public RepresentationConverter<TodoList> getConverter() {
-        return converter;
+    public RepresentationConverter<TodoList> getSaveConverter() {
+        return saveConverter;
     }
 
-    public void setConverter(RepresentationConverter<TodoList> converter) {
-        this.converter = converter;
+    public void setSaveConverter(RepresentationConverter<TodoList> saveConverter) {
+        this.saveConverter = saveConverter;
     }
 
-    public TodoList(Path savePath, RepresentationConverter<TodoList> converter) throws Exception {
+    public TodoList() {
+        this.savePath = null;
+        this.saveConverter = null;
+    }
+
+    public TodoList(Path savePath, RepresentationConverter<TodoList> saveConverter) throws Exception {
         this.savePath = savePath;
-        this.converter = converter;
+        this.saveConverter = saveConverter;
         reload();
     }
     public boolean createTask(int id, String title, String description, int priority, Date deadline) {
@@ -52,12 +57,12 @@ public class TodoList {
     }
 
     public void reload() throws Exception {
-        converter.fromRepresentation(Files.readString(savePath), this);
+        saveConverter.fromRepresentation(Files.readString(savePath), this);
     }
 
     public void saveChanges() throws Exception {
         var sb = new StringBuilder();
-        converter.toRepresentation(this, sb);
+        saveConverter.toRepresentation(this, sb);
         Files.writeString(savePath, sb);
     }
 
