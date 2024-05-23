@@ -3,15 +3,13 @@ package main.todolist.console;
 import main.todolist.TodoList;
 import org.junit.jupiter.api.Test;
 
-import java.util.Date;
-
 import static org.junit.jupiter.api.Assertions.*;
 
-class TaskNewTest {
+class DialogueTaskNewTest {
     @Test
-    void getQuestionAmount() throws Exception {
+    void getQuestionAmount() {
         var db = new TodoList();
-        var subj = new TaskNew(new StringBuilder(), db, 0);
+        var subj = new DialogueTaskNew(new StringBuilder(), db, 0);
         var out = new StringBuilder();
 
         //question 0

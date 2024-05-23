@@ -4,11 +4,11 @@ import main.*;
 
 import java.util.Date;
 
-public class TaskNew extends ConsoleDialogue {
+public class DialogueTaskNew extends ConsoleDialogue {
     private final TodoList dataBase;
     private final int taskId;
 
-    public TaskNew(StringBuilder out, TodoList dataBase, int taskId) {
+    public DialogueTaskNew(StringBuilder out, TodoList dataBase, int taskId) {
         super(out);
         this.dataBase = dataBase;
         this.taskId = taskId;

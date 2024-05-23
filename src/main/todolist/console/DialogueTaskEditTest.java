@@ -7,12 +7,12 @@ import java.util.Date;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class TaskEditTest {
+class DialogueTaskEditTest {
     @Test
-    void getQuestionAmount() throws Exception {
+    void getQuestionAmount() {
         var db = new TodoList();
         db.createTask(0, "test", "test", 0, new Date());
-        var subj = new TaskEdit(new StringBuilder(), db, 0);
+        var subj = new DialogueTaskEdit(new StringBuilder(), db, 0);
         var out = new StringBuilder();
 
         subj.execute("-", out);
