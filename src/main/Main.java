@@ -1,32 +1,24 @@
+package main;
+
+import main.todolist.TodoList;
+import main.todolist.console.ConsoleController;
+import main.todolist.serialization.XmlConverter;
+
 import java.io.*;
-import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.TimeZone;
 
 public class Main {
     public static void main(String[] args) {
 
         var consoleReader = new BufferedReader(new InputStreamReader(System.in));
-        TodoList dataBase = null;
-
+        TodoList dataBase;
         try {
-            dataBase = new TodoList(Paths.get("runtime_resources","todoList.xml"), new TodoListXmlConverter());
+            dataBase = new TodoList(Paths.get("runtime_resources","TodoList.xml"), new XmlConverter());
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
 
-        var calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+3"));
-        calendar.set(Calendar.HOUR_OF_DAY, 5);
-
-        var testItem = new TodoTask("Задача А", "Описание 1", 5, calendar.getTime());
-        dataBase.tasks.put(5, testItem);
-
-        var testItemB = new TodoTask("Задача Б", "Описание 2", 2, calendar.getTime());
-        dataBase.tasks.put(204, testItemB);
-
-        var controller = new TodoListConsoleController(dataBase);
+        var controller = new ConsoleController(dataBase);
         while(true) {
             String cmdLine = "";
             try {

@@ -1,5 +1,6 @@
-import java.io.File;
-import java.io.IOException;
+package main.todolist;
+import main.*;
+
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
@@ -33,7 +34,7 @@ public class TodoList {
         converter.fromRepresentation(Files.readString(savePath), this);
     }
 
-    public void saveChanges() throws IOException {
+    public void saveChanges() throws Exception {
         var sb = new StringBuilder();
         converter.toRepresentation(this, sb);
         Files.writeString(savePath, sb);

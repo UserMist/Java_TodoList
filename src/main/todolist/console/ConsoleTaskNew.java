@@ -1,3 +1,7 @@
+package main.todolist.console;
+import main.todolist.*;
+import main.*;
+
 import java.util.Date;
 
 public class ConsoleTaskNew extends ConsoleDialogue {
@@ -21,7 +25,7 @@ public class ConsoleTaskNew extends ConsoleDialogue {
             case 0: out.append("Заголовок: "); break;
             case 1: out.append("Описание: "); break;
             case 2: out.append("Важность: "); break;
-            case 3: out.append("Срок: "); break;
+            case 3: out.append("Срок (dd-mm-yyyy): "); break;
         }
     }
 
@@ -47,7 +51,7 @@ public class ConsoleTaskNew extends ConsoleDialogue {
                 answers.put(id, priority);
                 break;
             case 3:
-                answers.put(id, TodoListConsoleController.defaultDateParser.parse(line));
+                answers.put(id, ConsoleController.defaultDateParser.parse(line));
                 break;
         }
     }

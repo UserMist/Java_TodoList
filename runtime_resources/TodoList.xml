@@ -1,0 +1,7 @@
+<TodoList>
+    <Task description="f" id="1" title="Тест 1">
+        <Priority>4</Priority>
+        <Deadline>0009-09-21</Deadline>
+        <Status>new</Status>
+    </Task>
+</TodoList>

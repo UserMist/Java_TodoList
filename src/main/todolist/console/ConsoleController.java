@@ -1,11 +1,16 @@
+package main.todolist.console;
+import main.todolist.TodoList;
+import main.todolist.TodoTask;
+
 import java.text.SimpleDateFormat;
 import java.util.*;
-public class TodoListConsoleController extends ConsoleController {
+
+public class ConsoleController extends main.ConsoleController {
     public static SimpleDateFormat defaultDateParser = new SimpleDateFormat("yyyy-MM-dd");
-    public ConsoleController redirection = null;
+    public main.ConsoleController redirection = null;
     public TodoList dataBase;
 
-    public TodoListConsoleController(TodoList dataBase) {
+    public ConsoleController(TodoList dataBase) {
         this.dataBase = dataBase;
     }
 

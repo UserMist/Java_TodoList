@@ -1,3 +1,5 @@
+package main;
+
 import java.util.HashMap;
 
 public abstract class ConsoleDialogue extends ConsoleController {

@@ -1,6 +1,7 @@
+package main.todolist;
+
 import java.util.Date;
 
-//get set
 public class TodoTask {
     public TodoTask(String title, String description, int priority, Date deadline) {
         this.title = title;
