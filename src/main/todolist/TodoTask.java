@@ -2,6 +2,15 @@ package main.todolist;
 
 import java.util.Date;
 
+/**
+ * Задача, хранимая в TodoList.<br/><br/>
+ * Ограничения:<ul>
+ * <li>title может занимать максимально 50 символов.</li>
+ * <li>priority находится в диапазоне от 0 до 10 включительно.</li>
+ * <li>при status != New, completionDate равно null.</li>
+ * </ul>
+ * @see TodoList
+ */
 public class TodoTask {
     public TodoTask(String title, String description, int priority, Date deadline) {
         this.title = title;

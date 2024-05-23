@@ -5,6 +5,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.*;
 
+/**
+ * Перечень задач с поддержкой сохранения на диск.
+ * @see TodoTask
+ */
 public class TodoList {
     public Path savePath;
     public RepresentationConverter<TodoList> converter;

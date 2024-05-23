@@ -2,6 +2,10 @@ package main;
 
 import java.util.HashMap;
 
+/**
+ * Консольный контроллер, используемый для введения набора данных в виде отдельных полей
+ * @see ConsoleController
+ */
 public abstract class ConsoleDialogue extends ConsoleController {
     public final HashMap<Integer, Object> answers = new HashMap<>(getQuestionAmount());
     private int currentId = 0;
@@ -34,7 +38,7 @@ public abstract class ConsoleDialogue extends ConsoleController {
         }
         else {
             finish(out);
-            finished = true;
+            dispose = true;
         }
     }
 }

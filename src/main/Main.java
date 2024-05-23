@@ -18,17 +18,10 @@ public class Main {
         }
 
         var controller = new Controller(dataBase);
-        while(true) {
+        while(!controller.dispose) {
             String cmdLine = "";
-            try {
-                cmdLine = consoleReader.readLine();
-            }
-            catch(IOException e) {
-                System.out.println(e.getMessage());
-            }
-
-            if(cmdLine.equals("exit"))
-                return;
+            try { cmdLine = consoleReader.readLine(); }
+            catch(IOException e) { System.out.println(e.getMessage()); }
 
             var feedBack = new StringBuilder();
             controller.execute(cmdLine, feedBack);

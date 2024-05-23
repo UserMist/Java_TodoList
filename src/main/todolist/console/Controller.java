@@ -5,9 +5,15 @@ import main.todolist.TodoTask;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * Консольный контроллер для работы с TodoList путём введения текстовых команд.<br/>
+ * Некоторые команды могут временно перенаправлять пользователя на другие контроллеры.
+ * @see main.ConsoleController
+ * @see TodoList
+ */
 public class Controller extends main.ConsoleController {
     public static SimpleDateFormat defaultDateParser = new SimpleDateFormat("yyyy-MM-dd");
-    public main.ConsoleController redirection = null;
+    public main.ConsoleController redirection = null; //Перенаправление на диалог ввода данных
     public TodoList dataBase;
 
     public Controller(TodoList dataBase) {
@@ -54,6 +60,7 @@ public class Controller extends main.ConsoleController {
         put("remove", "            Удалить задачу");
         put("complete", "          Завершить задачу");
         put("edit", "              Редактировать задачу");
+        put("exit", "              Выйти из программы");
     }};
 
     private void executeHelp(ArrayList<String> words, StringBuilder out) {
@@ -232,7 +239,7 @@ public class Controller extends main.ConsoleController {
     public void execute(String line, StringBuilder out) {
         if(redirection != null) {
             redirection.execute(line, out);
-            if(redirection.finished)
+            if(redirection.dispose)
                 redirection = null;
             return;
         }
@@ -248,6 +255,7 @@ public class Controller extends main.ConsoleController {
             case "remove": executeRemove(words, out); break;
             case "edit": executeEdit(words, out); break;
             case "complete": executeComplete(words, out); break;
+            case "exit": dispose = true; break;
             default: out.append("Неизвестная команда\n"); break;
         }
     }
