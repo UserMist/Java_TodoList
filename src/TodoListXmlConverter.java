@@ -1,11 +1,9 @@
 public class TodoListXmlConverter implements RepresentationConverter<TodoList> {
     @Override
-    public StringBuilder ToRepresentation(TodoList in) {
-        return null;
+    public void toRepresentation(TodoList in, StringBuilder out) {
     }
 
     @Override
-    public TodoList FromRepresentation(String in) {
-        return null;
+    public void fromRepresentation(String in, TodoList out) {
     }
 }

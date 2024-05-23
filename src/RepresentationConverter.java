@@ -1,7 +1,6 @@
 public interface RepresentationConverter<T> {
 
-    public StringBuilder ToRepresentation(T in);
-
-    public T FromRepresentation(String in);
+    public void toRepresentation(TodoList in, StringBuilder out);
+    public void fromRepresentation(String in, T out) throws Exception;
 }
 
