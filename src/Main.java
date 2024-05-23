@@ -1,18 +1,29 @@
 import java.io.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.TimeZone;
 
 public class Main {
     public static void main(String[] args) {
+
         var consoleReader = new BufferedReader(new InputStreamReader(System.in));
-        var dataBase = new TodoList();
+        TodoList dataBase = null;
+
+        try {
+            dataBase = new TodoList(Paths.get("runtime_resources","todoList.xml"), new TodoListXmlConverter());
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         var calendar = Calendar.getInstance(TimeZone.getTimeZone("GMT+3"));
         calendar.set(Calendar.HOUR_OF_DAY, 5);
 
-        var testItem = new TodoTask("Задание 1", "Описание 1", 5, calendar.getTime());
+        var testItem = new TodoTask("Задача А", "Описание 1", 5, calendar.getTime());
         dataBase.tasks.put(5, testItem);
 
-        var testItemB = new TodoTask("Задание 2", "Описание 2", 2, calendar.getTime());
+        var testItemB = new TodoTask("Задача Б", "Описание 2", 2, calendar.getTime());
         dataBase.tasks.put(204, testItemB);
 
         var controller = new TodoListConsoleController(dataBase);
