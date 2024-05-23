@@ -62,7 +62,7 @@ public class TodoTask {
 
     public Date getCompletionDate() throws IllegalAccessException {
         if(status != Status.Done)
-            throw new IllegalAccessException("Задача не помечена как завершенная и поэтому у неё нет даты");
+            throw new IllegalAccessException("Задача не помечена как завершенная и поэтому у неё нет даты завершения");
         return completionDate;
     }
 
