@@ -49,10 +49,14 @@ public class XmlConverter implements RepresentationConverter<TodoList> {
             }
             taskXml.appendChild(status);
 
-            if(task.getStatus() == TodoTask.Status.Done && task.getCompletionDate() != null) {
-                var completionDate = xmlDoc.createElement("CompletionDate");
-                completionDate.setTextContent(defaultDateParser.format(task.getCompletionDate()));
-                taskXml.appendChild(completionDate);
+            try {
+                if(task.getStatus() == TodoTask.Status.Done && task.getCompletionDate() != null) {
+                    var completionDate = xmlDoc.createElement("CompletionDate");
+                    completionDate.setTextContent(defaultDateParser.format(task.getCompletionDate()));
+                    taskXml.appendChild(completionDate);
+                }
+            } catch (IllegalAccessException e) {
+                throw new RuntimeException(e);
             }
         });
 

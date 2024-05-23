@@ -7,7 +7,6 @@ import java.util.Date;
  * Ограничения:<ul>
  * <li>title может занимать максимально 50 символов.</li>
  * <li>priority находится в диапазоне от 0 до 10 включительно.</li>
- * <li>при status != New, completionDate равно null.</li>
  * </ul>
  * @see TodoList
  */
@@ -61,7 +60,9 @@ public class TodoTask {
         this.status = status;
     }
 
-    public Date getCompletionDate() {
+    public Date getCompletionDate() throws IllegalAccessException {
+        if(status != Status.Done)
+            throw new IllegalAccessException("Задача не помечена как завершенная и поэтому у неё нет даты");
         return completionDate;
     }
 

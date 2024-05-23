@@ -130,7 +130,10 @@ public class Controller extends main.ConsoleController {
             switch(task.getStatus()) {
                 case New: statusWord += "новая"; break;
                 case InProgress: statusWord += "текущая"; break;
-                case Done: statusWord += "завершена " + defaultDateParser.format(task.getCompletionDate()); break;
+                case Done:
+                    try { statusWord += "завершена " + defaultDateParser.format(task.getCompletionDate()); }
+                    catch (Exception e) { throw new RuntimeException(e); }
+                    break;
                 default: statusWord += "invalid"; break;
             }
             out.append('[').append(id).append("] ").append(task.getTitle()).append(" (").append(statusWord).append(")\n");
