@@ -1,3 +1,5 @@
+import java.util.Date;
+
 public class ConsoleTaskNew extends ConsoleDialogue {
     public TodoList dataBase;
     public int taskId;
@@ -45,15 +47,14 @@ public class ConsoleTaskNew extends ConsoleDialogue {
                 answers.put(id, priority);
                 break;
             case 3:
-                answers.put(id, null);
+                answers.put(id, TodoListConsoleController.defaultDateParser.parse(line));
                 break;
-                //throw new ExecutionControl.NotImplementedException("Не реализовано!!!!");
         }
     }
 
     @Override
     public void finish(StringBuilder out) {
-        dataBase.createTask(taskId, (String)answers.get(0), (String)answers.get(1), (int)answers.get(2), null);
+        dataBase.createTask(taskId, (String)answers.get(0), (String)answers.get(1), (int)answers.get(2), (Date) answers.get(3));
         out.append("Задача #").append(taskId).append(" была успешно создана\n");
     }
 }

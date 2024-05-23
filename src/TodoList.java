@@ -1,8 +1,18 @@
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.*;
 
 public class TodoList {
+    public Path savePath;
+    public RepresentationConverter<TodoList> converter;
     public final HashMap<Integer, TodoTask> tasks = new HashMap<>();
-
+    public TodoList(Path savePath, RepresentationConverter<TodoList> converter) throws Exception {
+        this.savePath = savePath;
+        this.converter = converter;
+        reload();
+    }
     public boolean createTask(int id, String title, String description, int priority, Date deadline) {
         if(tasks.containsKey(id))
             return false;
@@ -21,11 +31,11 @@ public class TodoList {
         return true;
     }
 
-    public void saveChanges() {
-
+    public void reload() throws Exception {
+        converter.fromRepresentation(Files.readString(savePath), this);
     }
 
-    public void reload() {
+    public void saveChanges() {
 
     }
 

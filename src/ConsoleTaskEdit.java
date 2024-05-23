@@ -49,9 +49,8 @@ public class ConsoleTaskEdit extends ConsoleDialogue {
                 answers.put(id, priority);
                 break;
             case 3:
-                answers.put(id, null);
+                answers.put(id, TodoListConsoleController.defaultDateParser.parse(line));
                 break;
-                //throw new ExecutionControl.NotImplementedException("Не реализовано!!!!");
         }
     }
 

@@ -1,5 +1,7 @@
+import java.text.SimpleDateFormat;
 import java.util.*;
 public class TodoListConsoleController extends ConsoleController {
+    public static SimpleDateFormat defaultDateParser = new SimpleDateFormat("yyyy-MM-dd");
     public ConsoleController redirection = null;
     public TodoList dataBase;
 
@@ -88,7 +90,7 @@ public class TodoListConsoleController extends ConsoleController {
     }
 
     private void executeList(ArrayList<String> words, StringBuilder out) {
-        ArrayList<HashMap.Entry<Integer, TodoTask>> taskView = null;
+        ArrayList<HashMap.Entry<Integer, TodoTask>> taskView;
         if(words.size() == 1) {
             taskView = dataBase.getTaskView();
         }
@@ -112,15 +114,16 @@ public class TodoListConsoleController extends ConsoleController {
             var id = pair.getKey();
             var task = pair.getValue();
 
-            var statusWord = "приоритет "+task.priority+", ";
+            var statusWord = "важность "+task.priority+", ";
             switch(task.status) {
                 case New: statusWord += "новая"; break;
                 case InProgress: statusWord += "текущая"; break;
                 case Done: statusWord += "завершена " + task.completionDate; break;
                 default: statusWord += "invalid"; break;
             }
-            out.append('[').append(id).append("] ").append(task.title).append(" (").append(statusWord).append(')');
-            out.append('\n');
+            out.append('[').append(id).append("] ").append(task.title).append(" (").append(statusWord).append(")\n");
+            out.append("Описание: ").append(task.description).append('\n');
+            out.append("Крайний срок: ").append(defaultDateParser.format(task.deadline)).append('\n');
         });
 
         if(taskView.isEmpty())
