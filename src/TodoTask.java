@@ -1,8 +1,8 @@
 import java.util.Date;
 
 //get set
-public class ToDoTask {
-    public ToDoTask(String title, String description, int priority, Date deadline) {
+public class TodoTask {
+    public TodoTask(String title, String description, int priority, Date deadline) {
         this.title = title;
         this.description = description;
         this.priority = priority;
