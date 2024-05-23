@@ -34,7 +34,6 @@ public class ConsoleTaskNew extends ConsoleDialogue {
                 else {
                     answers.put(id, line);
                 }
-
                 break;
             case 1:
                 answers.put(id, line);
@@ -44,6 +43,7 @@ public class ConsoleTaskNew extends ConsoleDialogue {
                 break;
             case 3:
                 answers.put(id, null);
+                break;
                 //throw new ExecutionControl.NotImplementedException("Не реализовано!!!!");
         }
     }

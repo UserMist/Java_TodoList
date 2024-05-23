@@ -47,8 +47,8 @@ public class ConsoleTaskEdit extends ConsoleDialogue {
                 break;
             case 3:
                 answers.put(id, null);
+                break;
                 //throw new ExecutionControl.NotImplementedException("Не реализовано!!!!");
-
         }
     }
 
