@@ -1,7 +1,7 @@
 package main;
 
 import main.todolist.TodoList;
-import main.todolist.console.ConsoleController;
+import main.todolist.console.Controller;
 import main.todolist.serialization.XmlConverter;
 
 import java.io.*;
@@ -17,7 +17,7 @@ public class Main {
             throw new RuntimeException(e);
         }
 
-        var controller = new ConsoleController(dataBase);
+        var controller = new Controller(dataBase);
         while(true) {
             String cmdLine = "";
             try {

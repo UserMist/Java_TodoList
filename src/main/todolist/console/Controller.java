@@ -5,12 +5,12 @@ import main.todolist.TodoTask;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
-public class ConsoleController extends main.ConsoleController {
+public class Controller extends main.ConsoleController {
     public static SimpleDateFormat defaultDateParser = new SimpleDateFormat("yyyy-MM-dd");
     public main.ConsoleController redirection = null;
     public TodoList dataBase;
 
-    public ConsoleController(TodoList dataBase) {
+    public Controller(TodoList dataBase) {
         this.dataBase = dataBase;
     }
 
@@ -147,7 +147,7 @@ public class ConsoleController extends main.ConsoleController {
                 return;
             }
 
-            redirection = new ConsoleTaskNew(out, dataBase, taskId);
+            redirection = new TaskNew(out, dataBase, taskId);
         }
         catch(NumberFormatException e) {
             out.append("Команда указана неверно\n");
@@ -166,7 +166,7 @@ public class ConsoleController extends main.ConsoleController {
                 return;
             }
 
-            redirection = new ConsoleTaskEdit(out, dataBase, taskId);
+            redirection = new TaskEdit(out, dataBase, taskId);
         }
         catch(NumberFormatException e) {
             out.append("Команда указана неверно\n");

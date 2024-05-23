@@ -4,10 +4,10 @@ import main.*;
 
 import java.util.Date;
 
-public class ConsoleTaskEdit extends ConsoleDialogue {
+public class TaskEdit extends ConsoleDialogue {
     public TodoList dataBase;
     public int taskId;
-    public ConsoleTaskEdit(StringBuilder out, TodoList dataBase, int taskId) {
+    public TaskEdit(StringBuilder out, TodoList dataBase, int taskId) {
         super(out);
         this.dataBase = dataBase;
         this.taskId = taskId;
@@ -53,7 +53,7 @@ public class ConsoleTaskEdit extends ConsoleDialogue {
                 answers.put(id, priority);
                 break;
             case 3:
-                answers.put(id, ConsoleController.defaultDateParser.parse(line));
+                answers.put(id, Controller.defaultDateParser.parse(line));
                 break;
         }
     }
