@@ -9,7 +9,6 @@ import java.nio.file.Paths;
 
 public class Main {
     public static void main(String[] args) {
-
         var consoleReader = new BufferedReader(new InputStreamReader(System.in));
         TodoList dataBase;
         try {

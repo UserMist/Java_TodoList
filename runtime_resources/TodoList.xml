@@ -1,7 +1,13 @@
 <TodoList>
-    <Task description="f" id="1" title="Тест 1">
+    <Task description="Обычная задача" id="0" title="Задача Б">
         <Priority>4</Priority>
-        <Deadline>0009-09-21</Deadline>
+        <Deadline>1999-02-03</Deadline>
+        <Status>done</Status>
+        <CompletionDate>2024-05-23</CompletionDate>
+    </Task>
+    <Task description="Сложная задача" id="131" title="Задача А">
+        <Priority>9</Priority>
+        <Deadline>2005-07-04</Deadline>
         <Status>new</Status>
     </Task>
 </TodoList>

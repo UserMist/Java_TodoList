@@ -123,7 +123,7 @@ public class ConsoleController extends main.ConsoleController {
             switch(task.status) {
                 case New: statusWord += "новая"; break;
                 case InProgress: statusWord += "текущая"; break;
-                case Done: statusWord += "завершена " + task.completionDate; break;
+                case Done: statusWord += "завершена " + defaultDateParser.format(task.completionDate); break;
                 default: statusWord += "invalid"; break;
             }
             out.append('[').append(id).append("] ").append(task.title).append(" (").append(statusWord).append(")\n");
@@ -211,7 +211,9 @@ public class ConsoleController extends main.ConsoleController {
                 }
                 else {
                     task.status = TodoTask.Status.Done;
-                    task.completionDate = null;
+                    var calendar = Calendar.getInstance();
+                    calendar.setTimeZone(TimeZone.getTimeZone("GMT+3"));
+                    task.completionDate = calendar.getTime();
                     out.append(" была помечена как выполненная\n");
 
                     try { dataBase.saveChanges(); }

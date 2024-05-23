@@ -25,7 +25,7 @@ public class ConsoleTaskNew extends ConsoleDialogue {
             case 0: out.append("Заголовок: "); break;
             case 1: out.append("Описание: "); break;
             case 2: out.append("Важность: "); break;
-            case 3: out.append("Срок (dd-mm-yyyy): "); break;
+            case 3: out.append("Срок (yyyy-mm-dd): "); break;
         }
     }
 
