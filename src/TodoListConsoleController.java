@@ -176,8 +176,12 @@ public class TodoListConsoleController extends ConsoleController {
 
             var id = Integer.parseInt(words.get(1));
             out.append("Задача #").append(id);
-            if(dataBase.removeTask(id))
+            if(dataBase.removeTask(id)) {
                 out.append(" успешно удалена\n");
+
+                try { dataBase.saveChanges(); }
+                catch (Exception e) { out.append("но изменения не могут быть сохранены на диск:\n").append(e).append('\n'); }
+            }
             else
                 out.append(" не была найдена\n");
         }
@@ -204,6 +208,9 @@ public class TodoListConsoleController extends ConsoleController {
                     task.status = TodoTask.Status.Done;
                     task.completionDate = null;
                     out.append(" была помечена как выполненная\n");
+
+                    try { dataBase.saveChanges(); }
+                    catch (Exception e) { out.append("но изменения не могут быть сохранены на диск:\n").append(e).append('\n'); }
                 }
             }
             else

@@ -61,7 +61,9 @@ public class ConsoleTaskEdit extends ConsoleDialogue {
         if(answers.containsKey(1)) task.description = (String) answers.get(1);
         if(answers.containsKey(2)) task.priority = (int) answers.get(2);
         if(answers.containsKey(3)) task.deadline = (Date) answers.get(3);
-        dataBase.saveChanges();
         out.append("Задача #").append(taskId).append(" была успешно отредактирована\n");
+
+        try { dataBase.saveChanges(); }
+        catch (Exception e) { out.append("но изменения не могут быть сохранены на диск:\n").append(e).append('\n'); }
     }
 }

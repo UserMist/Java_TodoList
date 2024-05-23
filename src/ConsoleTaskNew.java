@@ -54,7 +54,9 @@ public class ConsoleTaskNew extends ConsoleDialogue {
 
     @Override
     public void finish(StringBuilder out) {
-        dataBase.createTask(taskId, (String)answers.get(0), (String)answers.get(1), (int)answers.get(2), (Date) answers.get(3));
+        dataBase.createTask(taskId, (String) answers.get(0), (String) answers.get(1), (int) answers.get(2), (Date) answers.get(3));
         out.append("Задача #").append(taskId).append(" была успешно создана\n");
+        try { dataBase.saveChanges(); }
+        catch (Exception e) { out.append("но изменения не могут быть сохранены на диск:\n").append(e).append('\n'); }
     }
 }

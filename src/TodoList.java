@@ -18,7 +18,6 @@ public class TodoList {
             return false;
 
         tasks.put(id, new TodoTask(title, description, priority, deadline));
-        saveChanges();
         return true;
     }
 
@@ -27,7 +26,6 @@ public class TodoList {
             return false;
 
         tasks.remove(id);
-        saveChanges();
         return true;
     }
 
@@ -35,8 +33,10 @@ public class TodoList {
         converter.fromRepresentation(Files.readString(savePath), this);
     }
 
-    public void saveChanges() {
-
+    public void saveChanges() throws IOException {
+        var sb = new StringBuilder();
+        converter.toRepresentation(this, sb);
+        Files.writeString(savePath, sb);
     }
 
     public ArrayList<HashMap.Entry<Integer, TodoTask>> getTaskView() {
