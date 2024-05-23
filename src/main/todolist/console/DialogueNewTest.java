@@ -5,11 +5,11 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class DialogueTaskNewTest {
+class DialogueNewTest {
     @Test
     void getQuestionAmount() {
         var db = new TodoList();
-        var subj = new DialogueTaskNew(new StringBuilder(), db, 0);
+        var subj = new DialogueNew(new StringBuilder(), db, 0);
         var out = new StringBuilder();
 
         //question 0

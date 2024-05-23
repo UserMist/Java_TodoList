@@ -36,7 +36,7 @@ public class CommandEdit implements ControllerCommand {
                 return null;
             }
 
-            return new DialogueTaskEdit(out, controller.dataBase, taskId);
+            return new DialogueEdit(out, controller.dataBase, taskId);
         }
         catch(NumberFormatException e) {
             out.append("Команда указана неверно\n");

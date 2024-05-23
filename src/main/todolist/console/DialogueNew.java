@@ -4,10 +4,11 @@ import main.*;
 
 import java.util.Date;
 
-public class DialogueTaskEdit extends ConsoleDialogue {
+public class DialogueNew extends ConsoleDialogue {
     private final TodoList dataBase;
     private final int taskId;
-    public DialogueTaskEdit(StringBuilder out, TodoList dataBase, int taskId) {
+
+    public DialogueNew(StringBuilder out, TodoList dataBase, int taskId) {
         super(out);
         this.dataBase = dataBase;
         this.taskId = taskId;
@@ -30,9 +31,6 @@ public class DialogueTaskEdit extends ConsoleDialogue {
 
     @Override
     public void submitAnswer(int id, String line, StringBuilder out) throws Exception {
-        if(line.equals("-"))
-            return;
-
         switch(id) {
             case 0:
                 if(line.length() > 50) {
@@ -60,13 +58,8 @@ public class DialogueTaskEdit extends ConsoleDialogue {
 
     @Override
     public void finish(StringBuilder out) {
-        var task = dataBase.tasks.get(taskId);
-        if(answers.containsKey(0)) task.setTitle((String) answers.get(0));
-        if(answers.containsKey(1)) task.setDescription((String) answers.get(1));
-        if(answers.containsKey(2)) task.setPriority((int) answers.get(2));
-        if(answers.containsKey(3)) task.setDeadline((Date) answers.get(3));
-        out.append("Задача #").append(taskId).append(" была успешно отредактирована\n");
-
+        dataBase.createTask(taskId, (String) answers.get(0), (String) answers.get(1), (int) answers.get(2), (Date) answers.get(3));
+        out.append("Задача #").append(taskId).append(" была успешно создана\n");
         try { dataBase.saveChanges(); }
         catch (Exception e) { out.append("но изменения не могут быть сохранены на диск:\n").append(e).append('\n'); }
     }

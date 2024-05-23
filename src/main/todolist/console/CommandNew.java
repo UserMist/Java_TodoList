@@ -35,7 +35,7 @@ public class CommandNew implements ControllerCommand {
                 return null;
             }
 
-            return new DialogueTaskNew(out, controller.dataBase, taskId);
+            return new DialogueNew(out, controller.dataBase, taskId);
         }
         catch(NumberFormatException e) {
             out.append("Команда указана неверно\n");
